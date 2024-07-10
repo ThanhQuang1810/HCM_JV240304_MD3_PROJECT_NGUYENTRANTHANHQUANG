@@ -10,12 +10,9 @@ import utils.IOFile;
 import utils.InputUtil;
 
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import static utils.IOFile.PRODUCT_PATH;
 
@@ -27,11 +24,16 @@ public class Main {
     private static IOFile<Object> productIO;
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
+        String ANSI_RESET = "\u001B[0m";
+        String ANSI_RED = "\u001B[31m";
+        String ANSI_CYAN = "\u001B[36m";
         while (true) {
-            System.out.println("1. Admin login");
-            System.out.println("2. Register");
-            System.out.println("3. Login");
-            System.out.println("4. Exit");
+            System.out.println(ANSI_CYAN + "╔═══════════════════════════════════════════════╗" + ANSI_RESET);
+            System.out.println(ANSI_CYAN + "║               1. Admin login                  ║" + ANSI_RESET);
+            System.out.println(ANSI_CYAN + "║               2. Register                     ║" + ANSI_RESET);
+            System.out.println(ANSI_CYAN + "║               3. Login                        ║" + ANSI_RESET);
+            System.out.println(ANSI_CYAN + "║               4. Exit                         ║" + ANSI_RESET);
+            System.out.println(ANSI_CYAN + "╚═══════════════════════════════════════════════╝" + ANSI_RESET);
             int choice = Integer.parseInt(InputUtil.getString("Enter choice: "));
             switch (choice) {
                 case 1:
@@ -53,13 +55,19 @@ public class Main {
     }
 
     private static void adminMenu() throws IOException, ClassNotFoundException {
+        String ANSI_RESET = "\u001B[0m";
+        String ANSI_RED = "\u001B[31m";
+        String ANSI_CYAN = "\u001B[36m";
         while (true) {
-            System.out.println("----------Admin Menu----------");
-            System.out.println("1. Manage Categories");
-            System.out.println("2. Manage Products");
-            System.out.println("3. Manage Users");
-            System.out.println("4. Manage Orders");
-            System.out.println("5. Logout");
+            System.out.println(ANSI_CYAN + "╔═══════════════════════════════════════════════╗" + ANSI_RESET);
+            System.out.println(ANSI_CYAN + "║         ----------Admin Menu----------        ║" + ANSI_RESET);
+            System.out.println(ANSI_CYAN + "╚═══════════════════════════════════════════════╝" + ANSI_RESET);
+            System.out.println(ANSI_CYAN + "║              1. Manage Categories             ║" + ANSI_RESET);
+            System.out.println(ANSI_CYAN + "║              2. Manage Products               ║" + ANSI_RESET);
+            System.out.println(ANSI_CYAN + "║              3. Manage Users                  ║" + ANSI_RESET);
+            System.out.println(ANSI_CYAN + "║              4. Manage Orders                 ║" + ANSI_RESET);
+            System.out.println(ANSI_CYAN + "║              5. Logout                        ║" + ANSI_RESET);
+            System.out.println(ANSI_CYAN + "╚═══════════════════════════════════════════════╝" + ANSI_RESET);
             int choice = Integer.parseInt(InputUtil.getString("Enter choice: "));
             switch (choice) {
                 case 1:
@@ -84,12 +92,18 @@ public class Main {
     }
 
     private static void userMenu() {
+        String ANSI_RESET = "\u001B[0m";
+        String ANSI_RED = "\u001B[31m";
+        String ANSI_CYAN = "\u001B[36m";
         while (true) {
-            System.out.println("----------User Menu----------");
-            System.out.println("1. View Products");
-            System.out.println("2. Place Order");
-            System.out.println("3. View Orders");
-            System.out.println("4. Logout");
+            System.out.println(ANSI_CYAN + "╔═══════════════════════════════════════════════╗" + ANSI_RESET);
+            System.out.println(ANSI_CYAN + "║        ----------User Menu----------          ║" + ANSI_RESET);
+            System.out.println(ANSI_CYAN + "╚═══════════════════════════════════════════════╝" + ANSI_RESET);
+            System.out.println(ANSI_CYAN + "║              1. View Products                 ║" + ANSI_RESET);
+            System.out.println(ANSI_CYAN + "║              2. Place Order                   ║" + ANSI_RESET);
+            System.out.println(ANSI_CYAN + "║              3. View Orders                   ║" + ANSI_RESET);
+            System.out.println(ANSI_CYAN + "║              4. Logout                        ║" + ANSI_RESET);
+            System.out.println(ANSI_CYAN + "╚═══════════════════════════════════════════════╝" + ANSI_RESET);
             int choice = Integer.parseInt(InputUtil.getString("Enter choice: "));
             switch (choice) {
                 case 1:
@@ -111,14 +125,19 @@ public class Main {
     }
 
     public static void manageCategories() throws IOException, ClassNotFoundException {
+        String ANSI_RESET = "\u001B[0m";
+        String ANSI_RED = "\u001B[31m";
+        String ANSI_CYAN = "\u001B[36m";
         while (true) {
-            System.out.println("----------Manage Categories----------");
-            System.out.println("1. Add Category");
-            System.out.println("2. Find Category by ID");
-            System.out.println("3. View Categories");
-            System.out.println("4. Update Category");
-            System.out.println("5. Delete Category");
-            System.out.println("6. Back to Admin Menu");
+            System.out.println(ANSI_CYAN + "╔═══════════════════════════════════════════════╗" + ANSI_RESET);
+            System.out.println(ANSI_CYAN + "║      ----------Manage Categories----------    ║" + ANSI_RESET);
+            System.out.println(ANSI_CYAN + "║              1. Add Category                  ║" + ANSI_RESET);
+            System.out.println(ANSI_CYAN + "║              2. Find Category by ID           ║" + ANSI_RESET);
+            System.out.println(ANSI_CYAN + "║              3. View Categories               ║" + ANSI_RESET);
+            System.out.println(ANSI_CYAN + "║              4. Update Category               ║" + ANSI_RESET);
+            System.out.println(ANSI_CYAN + "║              5. Delete Category               ║" + ANSI_RESET);
+            System.out.println(ANSI_CYAN + "║              6. Back to Admin Menu            ║" + ANSI_RESET);
+            System.out.println(ANSI_CYAN + "╚═══════════════════════════════════════════════╝" + ANSI_RESET);
             int choice = Integer.parseInt(InputUtil.getString("Enter choice: "));
             switch (choice) {
                 case 1:
@@ -146,14 +165,20 @@ public class Main {
     }
 
     private static void manageProducts() throws IOException, ClassNotFoundException {
+        String ANSI_RESET = "\u001B[0m";
+        String ANSI_RED = "\u001B[31m";
+        String ANSI_CYAN = "\u001B[36m";
         while (true) {
-            System.out.println("-----------Manage Products-----------");
-            System.out.println("1. Add Product");
-            System.out.println("2. Find By Id");
-            System.out.println("3. View Products");
-            System.out.println("4. Update Product");
-            System.out.println("5. Delete Product");
-            System.out.println("6. Back to Admin Menu");
+            System.out.println(ANSI_CYAN + "╔═══════════════════════════════════════════════╗" + ANSI_RESET);
+            System.out.println(ANSI_CYAN + "║     -----------Manage Products-----------     ║" + ANSI_RESET);
+            System.out.println(ANSI_CYAN + "╚═══════════════════════════════════════════════╝" + ANSI_RESET);
+            System.out.println(ANSI_CYAN + "║             1. Add Product                    ║" + ANSI_RESET);
+            System.out.println(ANSI_CYAN + "║             2. Find By Id                     ║" + ANSI_RESET);
+            System.out.println(ANSI_CYAN + "║             3. View Products                  ║" + ANSI_RESET);
+            System.out.println(ANSI_CYAN + "║             4. Update Product                ║" + ANSI_RESET);
+            System.out.println(ANSI_CYAN + "║             5. Delete Product                ║" + ANSI_RESET);
+            System.out.println(ANSI_CYAN + "║             6. Back to Admin Menu            ║" + ANSI_RESET);
+            System.out.println(ANSI_CYAN + "╚═══════════════════════════════════════════════╝" + ANSI_RESET);
             int choice = Integer.parseInt(InputUtil.getString("Enter choice: "));
             switch (choice) {
                 case 1:
@@ -178,13 +203,19 @@ public class Main {
             }
         }
     }
+
     private static void manageUsers() {
+        String ANSI_RESET = "\u001B[0m";
+        String ANSI_RED = "\u001B[31m";
+        String ANSI_CYAN = "\u001B[36m";
         while (true) {
-            System.out.println("-----------Manage Users-----------");
-            System.out.println("1. View Users");
-            System.out.println("2. Update Status User");
-            System.out.println("3. Find Users By Name");
-            System.out.println("4. Back to Admin Menu");
+            System.out.println(ANSI_CYAN + "╔═══════════════════════════════════════════════╗" + ANSI_RESET);
+            System.out.println(ANSI_CYAN + "║      -----------Manage Users-----------       ║" + ANSI_RESET);
+            System.out.println(ANSI_CYAN + "╚═══════════════════════════════════════════════╝" + ANSI_RESET);
+            System.out.println(ANSI_CYAN + "║             1. View Users                    ║" + ANSI_RESET);
+            System.out.println(ANSI_CYAN + "║             2. Update Status User                   ║" + ANSI_RESET);
+            System.out.println(ANSI_CYAN + "║             3. Back to Admin Menu             ║" + ANSI_RESET);
+            System.out.println(ANSI_CYAN + "╚═══════════════════════════════════════════════╝" + ANSI_RESET);
             int choice = Integer.parseInt(InputUtil.getString("Enter choice: "));
             switch (choice) {
                 case 1:
@@ -194,9 +225,6 @@ public class Main {
                     updateStatus();
                     break;
                 case 3:
-                    findUsersByName();
-                    break;
-                case 4:
                     return;
                 default:
                     System.out.println("Invalid choice. Please try again.");
@@ -205,11 +233,17 @@ public class Main {
     }
 
     private static void manageOrders() {
+        String ANSI_RESET = "\u001B[0m";
+        String ANSI_RED = "\u001B[31m";
+        String ANSI_CYAN = "\u001B[36m";
         while (true) {
-            System.out.println("----------Manage Orders----------");
-            System.out.println("1. View Orders");
-            System.out.println("2. Delete Order");
-            System.out.println("3. Back to Admin Menu");
+            System.out.println(ANSI_RESET + "╔═══════════════════════════════════════════════╗" + ANSI_RESET);
+            System.out.println(ANSI_RESET + "║      ----------Manage Orders----------        ║" + ANSI_RESET);
+            System.out.println(ANSI_RESET + "╚═══════════════════════════════════════════════╝" + ANSI_RESET);
+            System.out.println(ANSI_RESET + "║              1. View Orders                   ║" + ANSI_RESET);
+            System.out.println(ANSI_RESET + "║              2. Delete Order                  ║" + ANSI_RESET);
+            System.out.println(ANSI_RESET + "║              3. Back to Admin Menu            ║" + ANSI_RESET);
+            System.out.println(ANSI_RESET + "╚═══════════════════════════════════════════════╝" + ANSI_RESET);
             int choice = Integer.parseInt(InputUtil.getString("Enter choice: "));
             switch (choice) {
                 case 1:
@@ -230,7 +264,9 @@ public class Main {
 
     //LOGIN ADMIN
     public static void loginAdmin() throws IOException, ClassNotFoundException {
-        System.out.println("----------Welcome Admin----------");
+        System.out.println("╔═══════════════════════════════════════╗");
+        System.out.println("║    ----------Welcome Admin----------  ║");
+        System.out.println("╚═══════════════════════════════════════╝");
         String adminName = InputUtil.getString("Enter admin name: ");
         String adminPassword = InputUtil.getString("Enter admin password: ");
         if (adminName.equals("admin") && adminPassword.equals("admin")) {
@@ -244,7 +280,9 @@ public class Main {
     //REGISTER USER
     public static void register() {
         try {
-            System.out.println("---------- Register ----------");
+            System.out.println("╔═══════════════════════════════════════╗");
+            System.out.println("║    ---------- Register ----------     ║");
+            System.out.println("╚═══════════════════════════════════════╝");
             String name = InputUtil.getString("Enter your name: ");
             String email = InputUtil.getString("Enter your email: ");
             String password = InputUtil.getString("Enter your password: ");
@@ -305,11 +343,12 @@ public class Main {
     }
 
 
-
     //LOGIN USER
     public static void login() {
         try {
-            System.out.println("---------- Login ----------");
+            System.out.println("╔═══════════════════════════════════════╗");
+            System.out.println("║     ---------- Login ----------       ║");
+            System.out.println("╚═══════════════════════════════════════╝");
             String email = InputUtil.getString("Enter your email: ");
             String password = InputUtil.getString("Enter your password: ");
 
@@ -349,15 +388,72 @@ public class Main {
     }
 
 
+    public static void viewAllUsers() {
+        try {
+            IOFile<User> userIO = new IOFile<>();
+            List<User> users = userIO.readFromFile(IOFile.USER_PATH);
 
+            if (users == null || users.isEmpty()) {
+                System.out.println("No users registered yet.");
+                return;
+            }
 
+            System.out.println("---------- Registered Users ----------");
+            for (User user : users) {
+                System.out.println("ID: " + user.getId() + ", Name: " + user.getName() + ", Email: " + user.getEmail()
+                        + ", Phone: " + user.getPhone() + ", Address: " + user.getAddress());
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            System.err.println("An error occurred while reading users from file.");
+            e.printStackTrace();
+        }
+    }
 
+    public static void updateStatus() {
+        String id = InputUtil.getString("Enter user ID to update: ");
+        User user = userService.read(id);
+
+        if (user != null) {
+            boolean newStatus = InputUtil.getBoolean("Enter new status (true/false): ");
+            user.setActive(newStatus); // Assuming setActive method exists in User class
+
+            userService.update(user); // Update the user in data storage
+            System.out.println("Status updated successfully.");
+        } else {
+            System.out.println("User not found.");
+        }
+    }
+
+    public static void findUsersByName() {
+        try {
+            String name = InputUtil.getString("Enter name to search for: ");
+            IOFile<User> userIO = new IOFile<>();
+            List<User> users = userIO.readFromFile(IOFile.USER_PATH);
+
+            if (users == null || users.isEmpty()) {
+                System.out.println("No users registered yet.");
+                return;
+            }
+            System.out.println("---------- Users Found ----------");
+            for (User user : users) {
+                if (user.getName().equalsIgnoreCase(name.trim())) {
+                    System.out.println("ID: " + user.getId() + ", Name: " + user.getName() + ", Email: " + user.getEmail()
+                            + ", Phone: " + user.getPhone() + ", Address: " + user.getAddress());
+                }
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            System.err.println("An error occurred while searching for users.");
+            e.printStackTrace();
+        }
+    }
 
     //ADD CATEGORY
     public static void addCategory() {
         try {
             // Enter category information from the user
-            System.out.println("---------- Add Category ----------");
+            System.out.println("╔═══════════════════════════════════════╗");
+            System.out.println("║    ---------- Add Category ---------- ║");
+            System.out.println("╚═══════════════════════════════════════╝");
             String name = InputUtil.getString("Enter category name: ");
 
             // Check if the name is not empty
@@ -451,9 +547,6 @@ public class Main {
     }
 
 
-
-
-
     //FIND BY ID
     public static void findById() {
         String id = InputUtil.getString("Enter category ID to find: ");
@@ -464,7 +557,6 @@ public class Main {
             System.out.println("Category with ID " + id + " not found.");
         }
     }
-
 
 
     //VIEW ALL CATEGORY
@@ -479,8 +571,6 @@ public class Main {
             }
         }
     }
-
-
 
 
     //UPDATE CATEGORY
@@ -520,8 +610,6 @@ public class Main {
     }
 
 
-
-
     //Delete Category
     public static void deleteCategory() {
         String id = InputUtil.getString("Enter the ID of the category to delete: ");
@@ -548,11 +636,12 @@ public class Main {
     }
 
 
-
     //ADD PRODUCT
     public static void addProduct() {
         try {
-            System.out.println("---------- Add Product ----------");
+            System.out.println("╔═══════════════════════════════════════╗");
+            System.out.println("║   ---------- Add Product ----------   ║");
+            System.out.println("╚═══════════════════════════════════════╝");
 
             String name = InputUtil.getString("Enter product name: ");
             String description = InputUtil.getString("Enter product description: ");
@@ -625,12 +714,13 @@ public class Main {
             return null;
         }
 
-        System.out.println("---------- Select Category ----------");
+        System.out.println("╔═══════════════════════════════════════╗");
+        System.out.println("║  ---------- Select Category --------- ║");
+        System.out.println("╚═══════════════════════════════════════╝");
         System.out.println("ID\tName");
         for (Category category : categories) {
             System.out.println(category.getCategoryId() + "\t" + category.getCategoryName());
         }
-
         String categoryId = InputUtil.getString("Enter category ID: ");
         for (Category category : categories) {
             if (category.getCategoryId().equals(categoryId)) {
@@ -659,6 +749,7 @@ public class Main {
             }
         }
     }
+
     public static void findProductById() {
         String id = InputUtil.getString("Nhập ID sản phẩm để tìm: ");
         Product product = productService.read(id);
@@ -667,13 +758,12 @@ public class Main {
                     ", Tên: " + product.getProductName() +
                     ", Giá: " + product.getProductPrice() +
                     ", Số lượng: " + product.getQuantity() +
-                    ", Mô tả: " + product.getProductDes()+
+                    ", Mô tả: " + product.getProductDes() +
                     ", ID danh mục: " + product.getCategory().getCategoryName());
         } else {
             System.out.println("Không tìm thấy sản phẩm với ID " + id + ".");
         }
     }
-
 
     //UPDATE PRODUCT
     public static void updateProduct() {
@@ -691,8 +781,6 @@ public class Main {
             Product product = productService.read(id);
 
             if (product != null) {
-
-
                 String name = InputUtil.getString("Enter the new product name: ");
                 if (!name.isEmpty()) {
                     product.setProductName(name);
@@ -775,92 +863,33 @@ public class Main {
         }
     }
 
-
-    public static void viewAllUsers() {
-        try {
-            IOFile<User> userIO = new IOFile<>();
-            List<User> users = userIO.readFromFile(IOFile.USER_PATH);
-
-            if (users == null || users.isEmpty()) {
-                System.out.println("No users registered yet.");
-                return;
-            }
-
-            System.out.println("---------- Registered Users ----------");
-            for (User user : users) {
-                System.out.println("ID: " + user.getId() + ", Name: " + user.getName() + ", Email: " + user.getEmail()
-                        + ", Phone: " + user.getPhone() + ", Address: " + user.getAddress());
-            }
-        } catch (IOException | ClassNotFoundException e) {
-            System.err.println("An error occurred while reading users from file.");
-            e.printStackTrace();
-        }
-    }
-
-    public static void updateStatus() {
-        String id = InputUtil.getString("Enter user ID to update: ");
-        User user = userService.read(id);
-
-        if (user != null) {
-            boolean newStatus = InputUtil.getBoolean("Enter new status (true/false): ");
-            user.setActive(newStatus); // Assuming setActive method exists in User class
-
-            userService.update(user); // Update the user in data storage
-            System.out.println("Status updated successfully.");
-        } else {
-            System.out.println("User not found.");
-        }
-    }
-
-    public static void findUsersByName() {
-        try {
-            String name = InputUtil.getString("Enter name to search for: ");
-            IOFile<User> userIO = new IOFile<>();
-            List<User> users = userIO.readFromFile(IOFile.USER_PATH);
-
-            if (users == null || users.isEmpty()) {
-                System.out.println("No users registered yet.");
-                return;
-            }
-
-            System.out.println("---------- Users Found ----------");
-            for (User user : users) {
-                if (user.getName().equalsIgnoreCase(name.trim())) {
-                    System.out.println("ID: " + user.getId() + ", Name: " + user.getName() + ", Email: " + user.getEmail()
-                            + ", Phone: " + user.getPhone() + ", Address: " + user.getAddress());
-                }
-            }
-        } catch (IOException | ClassNotFoundException e) {
-            System.err.println("An error occurred while searching for users.");
-            e.printStackTrace();
-        }
-    }
-
-    //----------------------------------------------------------------ORDER----------------------------------------------------------------
-    public static void viewAllOrders(){
+    public static void viewAllOrders() {
         List<Order> orders = orderService.getAll();
-        for(Order order : orders){
+        for (Order order : orders) {
             System.out.println("ID: " + order.getOrderId() + ", User ID: " + order.getUserId() + ", Total Price: " + order.getTotalAmount()
                     + ", Date: " + order.getDate());
         }
     }
-    public static void deleteOrder(){
+
+    public static void deleteOrder() {
         String id = InputUtil.getString("Enter order ID to delete: ");
         orderService.delete(id);
         System.out.println("Order delete successfully. !!!");
     }
-    public static void updateStatusOrder(){
+
+    public static void updateStatusOrder() {
         String id = InputUtil.getString("Enter order ID to update: ");
         Order order = orderService.read(id);
-        if (order!= null){
+        if (order != null) {
             boolean status = InputUtil.getBoolean("Enter new status (true/false): ");
             order.setStatus(status);
             orderService.update(order);
             System.out.println("Status update successfully. !!!");
-        }else{
+        } else {
             System.out.println("Order not found");
         }
     }
+
     public static void placeOrder() {
         //tạo đơn hàng mới
         Order order = new Order();
@@ -880,12 +909,12 @@ public class Main {
             System.out.println("Product not found");
         }
     }
-    public static void viewOrders(){
+
+    public static void viewOrders() {
         List<Order> orders = orderService.getAll();
-        for(Order order : orders){
+        for (Order order : orders) {
             System.out.println("ID: " + order.getOrderId() + ", User ID: " + order.getUserId() + ", Total Price: " + order.getTotalAmount()
                     + ", Date: " + order.getDate());
         }
     }
 }
-
