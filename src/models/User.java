@@ -1,31 +1,36 @@
 package models;
-
 import java.io.Serializable;
 
 public class User implements Serializable {
+    private static final long serialVersionUID = 494741974462062790L; // Use the value from the error message
+
     private int id;
     private String name;
     private String email;
     private String password;
     private String phone;
     private String address;
-    private boolean status;
-    private static int autoId = 1;
+
+    public User(int newId, String productName, String productName1, double productPrice, int quantity) {
+    }
+
     public User() {
     }
 
-    public User(String name, String email, String password, String phone, String address) {
-        this.id = autoId++;
+    public User(int id, String name, String email, String password, String phone, String address) {
+        this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
         this.phone = phone;
         this.address = address;
-        this.status = status;
     }
 
-    public String getId() {
-        return String.valueOf(id);
+    public User(String name, String email, String password, String phone, String address) {
+    }
+
+    public int getId() {
+        return id;
     }
 
     public void setId(int id) {
@@ -72,19 +77,6 @@ public class User implements Serializable {
         this.address = address;
     }
 
-    public static int getAutoId() {
-        return autoId;
-    }
-
-    public static void setAutoId(int autoId) {
-        User.autoId = autoId;
-    }
-
-    public boolean isStatus() {
-        return status;
-    }
-
-    public void setStatus(boolean status) {
-        this.status = status;
+    public void setActive(boolean newStatus) {
     }
 }
