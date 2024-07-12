@@ -1,12 +1,13 @@
 package services;
+
 import interfaces.CRUD;
 import models.Product;
 import utils.IOFile;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.HashMap;
 import java.util.stream.Collectors;
 
 public class ProductService implements CRUD<Product> {
