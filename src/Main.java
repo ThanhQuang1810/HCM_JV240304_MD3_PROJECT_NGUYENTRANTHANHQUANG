@@ -98,10 +98,11 @@ public class Main {
             System.out.println(ANSI_CYAN + "║        ----------User Menu----------          ║" + ANSI_RESET);
             System.out.println(ANSI_CYAN + "╚═══════════════════════════════════════════════╝" + ANSI_RESET);
             System.out.println(ANSI_CYAN + "║              1. User Information              ║" + ANSI_RESET);
-            System.out.println(ANSI_CYAN + "║              2. View Products                 ║" + ANSI_RESET);
+            System.out.println(ANSI_CYAN + "║              2. View Products (Price)         ║" + ANSI_RESET);
             System.out.println(ANSI_CYAN + "║              3. Add To Cart                   ║" + ANSI_RESET);
             System.out.println(ANSI_CYAN + "║              4. View Orders                   ║" + ANSI_RESET);
-            System.out.println(ANSI_CYAN + "║              5. Logout                        ║" + ANSI_RESET);
+            System.out.println(ANSI_CYAN + "║              5. Delete Orders                 ║" + ANSI_RESET);
+            System.out.println(ANSI_CYAN + "║              6. Logout                        ║" + ANSI_RESET);
             System.out.println(ANSI_CYAN + "╚═══════════════════════════════════════════════╝" + ANSI_RESET);
             int choice = Integer.parseInt(InputUtil.getString("Enter choice: "));
             switch (choice) {
@@ -118,6 +119,9 @@ public class Main {
                     viewOrders(true);
                     break;
                 case 5:
+                    deleteCart();
+                    break;
+                case 6:
                     System.out.println("Logout successful!");
                     return; // Return to the main menu
                 default:
@@ -216,22 +220,19 @@ public class Main {
             System.out.println(ANSI_CYAN + "║      -----------Manage Users-----------       ║" + ANSI_RESET);
             System.out.println(ANSI_CYAN + "╚═══════════════════════════════════════════════╝" + ANSI_RESET);
             System.out.println(ANSI_CYAN + "║             1. View Users                     ║" + ANSI_RESET);
-            System.out.println(ANSI_CYAN + "║             2. Update Status User             ║" + ANSI_RESET);
-            System.out.println(ANSI_CYAN + "║             3. Find Users By Name             ║" + ANSI_RESET);
-            System.out.println(ANSI_CYAN + "║             4. Back to Admin Menu             ║" + ANSI_RESET);
+            System.out.println(ANSI_CYAN + "║             2. Find Users By Name             ║" + ANSI_RESET);
+            System.out.println(ANSI_CYAN + "║             3. Back to Admin Menu             ║" + ANSI_RESET);
             System.out.println(ANSI_CYAN + "╚═══════════════════════════════════════════════╝" + ANSI_RESET);
             int choice = Integer.parseInt(InputUtil.getString("Enter choice: "));
             switch (choice) {
                 case 1:
                     viewAllUsers();
                     break;
+
                 case 2:
-//                    updateStatus();
-                    break;
-                case 3:
                     findUsersByName();
                     break;
-                case 4:
+                case 3:
                     return;
                 default:
                     System.out.println("Invalid choice. Please try again.");
@@ -259,7 +260,6 @@ public class Main {
                 case 2:
                     deleteOrder();
                     break;
-             
                 case 3:
                     return;
                 default:
@@ -705,13 +705,16 @@ public class Main {
         if (products.isEmpty()) {
             System.out.println("No products available.");
         } else {
+            // Sắp xếp danh sách sản phẩm theo giá sản phẩm
+            Collections.sort(products, Comparator.comparing(Product::getProductPrice));
+
             for (Product product : products) {
-                System.out.println("ID: " + product.getProductId());
-                System.out.println("Name: " + product.getProductName());
-                System.out.println("Description: " + product.getProductDes());
-                System.out.println("Price: " + product.getProductPrice());
-                System.out.println("Quantity: " + product.getQuantity());
-                System.out.println("Category: " + product.getCategory().getCategoryName());
+                System.out.println("ID: " + product.getProductId() + " | "
+                        + "Name: " + product.getProductName() + " | "
+                        + "Description: " + product.getProductDes() + " | "
+                        + "Price: " + product.getProductPrice() + " | "
+                        + "Quantity: " + product.getQuantity() + " | "
+                        + "Of Category: " + product.getCategory().getCategoryName());
             }
         }
     }
@@ -725,7 +728,7 @@ public class Main {
                     ", Giá: " + product.getProductPrice() +
                     ", Số lượng: " + product.getQuantity() +
                     ", Mô tả: " + product.getProductDes() +
-                    ", ID danh mục: " + product.getCategory().getCategoryName());
+                    ", Trong danh mục: " + product.getCategory().getCategoryName());
         } else {
             System.out.println("Không tìm thấy sản phẩm với ID " + id + ".");
         }
@@ -944,25 +947,7 @@ public class Main {
     }
 
 
-    public static Map<String, String> getUserInfoByEmail(String email) {
-        Map<String, String> userInfo = new HashMap<>();
 
-        try (BufferedReader reader = new BufferedReader(new FileReader(IOFile.USER_PATH))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                String[] parts = line.split(",");
-                if (parts.length >= 3 && parts[2].equals(email)) { // Giả sử email là phần tử thứ 3
-                    userInfo.put("name", parts[1]); // Giả sử tên là phần tử thứ 2
-                    userInfo.put("address", parts[4]); // Giả sử địa chỉ là phần tử thứ 5
-                    break;
-                }
-            }
-        } catch (IOException e) {
-            System.err.println("Error reading user info from file: " + e.getMessage());
-        }
-
-        return userInfo;
-    }
 
 
     public static Map<String, Object> viewOrders(boolean doOrder) {
@@ -1035,16 +1020,19 @@ public class Main {
                 } catch (IOException e) {
                     System.err.println("Lỗi khi ghi vào file order: " + e.getMessage());
                 }
+                try (BufferedWriter writer = new BufferedWriter(new FileWriter(IOFile.CART_PATH))) {
+                    writer.write("");
+                    System.out.println("Xóa giỏ hàng thành công.");
+                } catch (IOException e) {
+                    System.err.println("Lỗi khi xóa file cart: " + e.getMessage());
+                }
             } else {
                 System.out.println("Không đặt hàng.");
             }
             // Xóa thông tin giỏ hàng trong file cart
-            try (BufferedWriter writer = new BufferedWriter(new FileWriter(IOFile.CART_PATH))) {
-                writer.write("");
-                System.out.println("Xóa giỏ hàng thành công.");
-            } catch (IOException e) {
-                System.err.println("Lỗi khi xóa file cart: " + e.getMessage());
-            }
+
+
+
         } catch (IOException e) {
             System.err.println("Lỗi khi đọc dữ liệu từ file cart: " + e.getMessage());
         }
@@ -1057,6 +1045,14 @@ public class Main {
         return result;
     }
 
+    public static void deleteCart() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(IOFile.CART_PATH))) {
+            writer.write("");
+            System.out.println("Xóa giỏ hàng thành công.");
+        } catch (IOException e) {
+            System.err.println("Lỗi khi xóa file cart: " + e.getMessage());
+        }
+    }
 
     public static void viewUserInfo() throws IOException, ClassNotFoundException {
         String ANSI_RESET = "\u001B[0m";
@@ -1087,22 +1083,23 @@ public class Main {
     }
 
     public static void userInfo() {
-        String ANSI_RESET = "\u001B[0m";
-        String ANSI_RED = "\u001B[31m";
-        String ANSI_CYAN = "\u001B[36m";
-        Optional<User> loggedInUser = UserService.getLoggedInUser();
-        if (loggedInUser.isPresent()) {
-            User user = loggedInUser.get();
-            System.out.println(ANSI_CYAN + "╔════════════════════════════════════════════╗" + ANSI_RESET);
-            System.out.println(ANSI_CYAN + "║    -----------USER INFORMATION-----------  ║" + ANSI_RESET);
-            System.out.println(ANSI_CYAN + "╚════════════════════════════════════════════╝" + ANSI_RESET);
-            System.out.println("ID: " + user.getId());
-            System.out.println("Name: " + user.getName());
-            System.out.println("Email: " + user.getEmail());
-            System.out.println("Phone: " + user.getPhone());
-            System.out.println("Address: " + user.getAddress());
-        } else {
-            System.out.println("No user logged in.");
+        try {
+            IOFile<User> userIO = new IOFile<>();
+            List<User> users = userIO.readFromFile(IOFile.USER_PATH);
+
+            if (users == null || users.isEmpty()) {
+                System.out.println("No users registered yet.");
+                return;
+            }
+
+            System.out.println("---------- Infomation Users ----------");
+            for (User user : users) {
+                System.out.println( ", Name: " + user.getName() + ", Email: " + user.getEmail()
+                        + ", Phone: " + user.getPhone() + ", Address: " + user.getAddress());
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            System.err.println("An error occurred while reading users from file.");
+            e.printStackTrace();
         }
     }
 

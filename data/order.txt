@@ -1,4 +1,2 @@
-Giỏ hàng:
-gấu bông con thỏ,1,120000.0
-gấu bông hình dưa hấu,1,120000.0
-TỪ ĐIỂN BÁCH KHOA ĐỘNG VẬT,1,100000.0
+HEO PEPPA,2,16000.0
+SGK TOÁN 12,1,12000.0
